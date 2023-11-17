@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyName>NecronomiconsCurse</AssemblyName>
+        <Description>The mod that adds TOS1 (and more!) to TOS2!</Description>
+        <Version>1.0.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>NecronomiconsCurse</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Authors>AlchlcSystm</Authors>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <DebugType>embedded</DebugType>
+        <IncludeSymbols>true</IncludeSymbols>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/AlchlcDvl/NecronomiconsCurse.git</RepositoryUrl>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\*" />
+        <PackageReference Include="HarmonyX" Version="2.10.1" />
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.1" IncludeAssets="compile" />
+        <Reference Include="Assembly-CSharp_publicized"><HintPath>Lib\Assembly-CSharp_publicized.dll</HintPath></Reference>
+        <Reference Include="UnityEngine.UI"><HintPath>Lib\UnityEngine.UI.dll</HintPath></Reference>
+        <Reference Include="SalemModLoader"><HintPath>Lib\SalemModLoader.dll</HintPath></Reference>
+        <Reference Include="Unity.TextMeshPro"><HintPath>Lib\Unity.TextMeshPro.dll</HintPath></Reference>
+        <Reference Include="Newtonsoft.Json"><HintPath>Lib\Newtonsoft.Json.dll</HintPath></Reference>
+        <Reference Include="BepInEx"><HintPath>Lib\BepInEx.dll</HintPath></Reference>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    </ItemGroup>
+
+    <Target Name="Copy" AfterTargets="Build">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:/Program Files (x86)/Steam/steamapps/common/Town of Salem 2/SalemModLoader/Mods/"></Copy>
+    </Target>
+</Project>
