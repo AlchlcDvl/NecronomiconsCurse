@@ -1,7 +1,7 @@
 
 <p align="center">
     <img width="400px" src="./Images/Thumbnail.png" align="center" alt="logo" />
-    <h align="center">Necronomicon's Curse</h>
+    <h2 align="center">Necronomicon's Curse</h2>
     <p align="center">The customisation mod that lets you add a bit of flair to icons!
 </p>
 
