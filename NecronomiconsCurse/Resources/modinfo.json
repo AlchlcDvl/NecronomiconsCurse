@@ -4,16 +4,46 @@
   "Authors": [ "AlchlcSystm" ],
   "Description": "The TOS2 mod where the game's hard because you're cursed by the Necronomicon!",
   "Version": "1.0.0",
+  "Discord": "https://discord.gg/cd27aDQDY9",
+  "Platforms": [ "Windows", "Mac" ],
   "Settings":
   {
     "CheckboxSettings":
     [
       {
+        "Name": "Disable Chat Logs",
+        "SettingID": "cursed.logs",
+        "Description": "Toggles whether you can open the game's chat logs",
+        "DefaultValue": false,
+        "AvailableInGame": false
+      },
+      {
+        "Name": "Disable Death Notes",
+        "SettingID": "cursed.deathnotes",
+        "Description": "Toggles whether you can read death notes",
+        "DefaultValue": false,
+        "AvailableInGame": false
+      },
+      {
+        "Name": "Disable Last Wills",
+        "SettingID": "cursed.lastwills",
+        "Description": "Toggles whether you can read others' last wills after it is displayed",
+        "DefaultValue": false,
+        "AvailableInGame": false
+      },
+      {
+        "Name": "Disable Cause Of Death",
+        "SettingID": "cursed.causeofdeaths",
+        "Description": "Toggles whether you can see a player's cause of death",
+        "DefaultValue": false,
+        "AvailableInGame": false
+      },
+      {
         "Name": "Enable Debugging",
         "SettingID": "cursed.debug",
         "Description": "Toggles whether the mod's logs will be displayed (keep it off, only turn on if the dev tells you to)",
         "DefaultValue": false,
-        "AvailableInGame": false
+        "AvailableInGame": true
       }
     ]
   }
