@@ -2,7 +2,7 @@
 <p align="center">
     <img width="400px" src="./Images/Thumbnail.png" align="center" alt="logo" />
     <h2 align="center">Necronomicon's Curse</h2>
-    <p align="center">The customisation mod that lets you add a bit of flair to icons!
+    <p align="center">Cursed by the sentient book!
 </p>
 
 <p align="center">
