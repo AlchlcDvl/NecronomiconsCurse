@@ -11,30 +11,23 @@
     "CheckboxSettings":
     [
       {
-        "Name": "Disable Chat Logs",
-        "SettingID": "cursed.logs",
-        "Description": "Toggles whether you can open the game's chat logs",
+        "Name": "Active In Ranked",
+        "SettingID": "cursed.ranked",
+        "Description": "Toggles whether you are cursed in Ranked mode",
         "DefaultValue": false,
         "AvailableInGame": false
       },
       {
-        "Name": "Disable Death Notes",
-        "SettingID": "cursed.deathnotes",
-        "Description": "Toggles whether you can read death notes",
+        "Name": "Active In Ranked Practice",
+        "SettingID": "cursed.practice",
+        "Description": "Toggles whether you are cursed in Ranked Practice mode",
         "DefaultValue": false,
         "AvailableInGame": false
       },
       {
-        "Name": "Disable Last Wills",
-        "SettingID": "cursed.lastwills",
-        "Description": "Toggles whether you can read others' last wills after it is displayed",
-        "DefaultValue": false,
-        "AvailableInGame": false
-      },
-      {
-        "Name": "Disable Cause Of Death",
-        "SettingID": "cursed.causeofdeaths",
-        "Description": "Toggles whether you can see a player's cause of death",
+        "Name": "Active In Classic",
+        "SettingID": "cursed.classic",
+        "Description": "Toggles whether you are cursed in Classic mode",
         "DefaultValue": false,
         "AvailableInGame": false
       },

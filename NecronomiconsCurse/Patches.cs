@@ -1,6 +1,5 @@
 using Game.Interface;
 using Home.Shared;
-using Server.Shared.Info;
 
 namespace NecronomiconsCurse;
 
@@ -11,7 +10,7 @@ public static class PooledChatViewSwitcherSetViewToChatLogPatch
     {
         NecronomiconsCurse.LogMessage("Patching PooledChatViewSwitcher.SetViewToChatLog");
 
-        if (Pepper.GetCurrentGameMode().gameType is GameType.Ranked or GameType.RankedPractice or GameType.Tutorial or GameType.NewPlayerClassic or GameType.Classic)
+        if (Constants.IsInvalidMode)
             return true;
 
         return !Constants.ChatLog;
@@ -25,7 +24,7 @@ public static class PooledChatViewSwitcherStartPatch
     {
         NecronomiconsCurse.LogMessage("Patching PooledChatViewSwitcher.Start");
 
-        if (Pepper.GetCurrentGameMode().gameType is GameType.Ranked or GameType.RankedPractice or GameType.Tutorial or GameType.NewPlayerClassic or GameType.Classic)
+        if (Constants.IsInvalidMode)
             return;
 
         if (Constants.ChatLog)
@@ -40,7 +39,7 @@ public static class PlayerPopupControllerInitializeDeathInfoPanelPatch
     {
         NecronomiconsCurse.LogMessage("Patching PlayerPopupController.InitializeDeathInfoPanel");
 
-        if (Pepper.GetCurrentGameMode().gameType is GameType.Ranked or GameType.RankedPractice or GameType.Tutorial or GameType.NewPlayerClassic or GameType.Classic)
+        if (Constants.IsInvalidMode)
             return true;
 
         if (Constants.CausesOfDeath)
@@ -57,7 +56,7 @@ public static class PlayerPopupControllerInitializeKilledByPanelPatch
     {
         NecronomiconsCurse.LogMessage("Patching PlayerPopupController.InitializeKilledByPanel");
 
-        if (Pepper.GetCurrentGameMode().gameType is GameType.Ranked or GameType.RankedPractice or GameType.Tutorial or GameType.NewPlayerClassic or GameType.Classic)
+        if (Constants.IsInvalidMode)
             return true;
 
         if (Constants.CausesOfDeath)
@@ -74,7 +73,7 @@ public static class PlayerPopupControllerInitializeLastWillPanelPatch
     {
         NecronomiconsCurse.LogMessage("Patching PlayerPopupController.InitializeLastWillPanel");
 
-        if (Pepper.GetCurrentGameMode().gameType is GameType.Ranked or GameType.RankedPractice or GameType.Tutorial or GameType.NewPlayerClassic or GameType.Classic)
+        if (Constants.IsInvalidMode)
             return true;
 
         if (Constants.LastWills)
@@ -91,7 +90,7 @@ public static class PlayerPopupControllerInitializeDeathNotePanelPatch
     {
         NecronomiconsCurse.LogMessage("Patching PlayerPopupController.InitializeDeathNotePanel");
 
-        if (Pepper.GetCurrentGameMode().gameType is GameType.Ranked or GameType.RankedPractice or GameType.Tutorial or GameType.NewPlayerClassic or GameType.Classic)
+        if (Constants.IsInvalidMode)
             return true;
 
         if (Constants.DeathNotes)
