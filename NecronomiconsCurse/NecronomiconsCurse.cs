@@ -58,9 +58,21 @@ public class NecronomiconsCurse
         OnChanged = ReloadPlayerPopOuts
     };
 
-    private static void ReloadChatLog(bool active) => UObject.FindObjectsOfType<PooledChatViewSwitcher>(true).ForEach(x => x.ExpandButtonGO.SetActive(active));
+    private static void ReloadChatLog(bool active)
+    {
+        if (Constants.IsInvalidMode)
+            return;
 
-    private static void ReloadPlayerPopOuts(bool _) => UObject.FindObjectsOfType<PlayerPopupController>(true).ForEach(x => x.Validate());
+        UObject.FindObjectsOfType<PooledChatViewSwitcher>(true).ForEach(x => x.ExpandButtonGO.SetActive(active));
+    }
+
+    private static void ReloadPlayerPopOuts(bool _)
+    {
+        if (Constants.IsInvalidMode)
+            return;
+
+        UObject.FindObjectsOfType<PlayerPopupController>(true).ForEach(x => x.Validate());
+    }
 
     private static void LogSomething(object message, LogLevel type, bool logIt)
     {
