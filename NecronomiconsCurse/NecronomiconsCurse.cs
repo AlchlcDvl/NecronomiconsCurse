@@ -58,12 +58,12 @@ public class NecronomiconsCurse
         OnChanged = ReloadPlayerPopOuts
     };
 
-    private static void ReloadChatLog(bool active)
+    private static void ReloadChatLog(bool inactive)
     {
         if (Constants.IsInvalidMode)
             return;
 
-        UObject.FindObjectsOfType<PooledChatViewSwitcher>(true).ForEach(x => x.ExpandButtonGO.SetActive(active));
+        UObject.FindObjectsOfType<PooledChatViewSwitcher>(true).ForEach(x => x.ExpandButtonGO.SetActive(!inactive));
     }
 
     private static void ReloadPlayerPopOuts(bool _)
