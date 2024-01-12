@@ -32,6 +32,23 @@ public static class PooledChatViewSwitcherStartPatch
     }
 }
 
+[HarmonyPatch(typeof(PooledChatViewSwitcher), nameof(PooledChatViewSwitcher.SetChatLogIsVisible))]
+public static class PooledChatViewSwitcherSetChatLogIsVisiblePatch
+{
+    public static bool Prefix(PooledChatViewSwitcher __instance, ref bool isVisible)
+    {
+        NecronomiconsCurse.LogMessage("Patching PooledChatViewSwitcher.SetChatLogIsVisible");
+
+        if (Constants.IsInvalidMode)
+            return true;
+
+        if (Constants.ChatLog && isVisible)
+            __instance.ExpandButtonGO.SetActive(false);
+
+        return !Constants.ChatLog || !isVisible;
+    }
+}
+
 [HarmonyPatch(typeof(PlayerPopupController), nameof(PlayerPopupController.InitializeDeathInfoPanel))]
 public static class PlayerPopupControllerInitializeDeathInfoPanelPatch
 {
