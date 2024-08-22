@@ -27,10 +27,10 @@
         <EmbeddedResource Include="Resources\*" />
         <PackageReference Include="HarmonyX" Version="2.10.1" />
         <PackageReference Include="UnityEngine.Modules" Version="2021.3.1" IncludeAssets="compile" />
-        <Reference Include="Assembly-CSharp"><HintPath>Lib\Assembly-CSharp.dll</HintPath></Reference>
-        <Reference Include="UnityEngine.UI"><HintPath>Lib\UnityEngine.UI.dll</HintPath></Reference>
-        <Reference Include="SalemModLoader"><HintPath>Lib\SalemModLoader.dll</HintPath></Reference>
-        <Reference Include="BepInEx"><HintPath>Lib\BepInEx.dll</HintPath></Reference>
+        <Reference Include="Lib\*.dll">
+            <HintPath>Lib\%(FileName)%(Extension)</HintPath>
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
