@@ -1,5 +1,7 @@
-using BepInEx.Logging;
+using static SML.Mod;
 using Game.Interface;
+using Witchcraft.Modules;
+using Witchcraft.Utils;
 using UObject = UnityEngine.Object;
 
 namespace NecronomiconsCurse;
@@ -7,19 +9,15 @@ namespace NecronomiconsCurse;
 [SalemMod]
 [SalemMenuItem]
 [DynamicSettings]
+[WitchcraftMod(typeof(NecronomiconsCurse), "NecrosCurse")]
 public class NecronomiconsCurse
 {
-    private static readonly ManualLogSource Log = BepInEx.Logging.Logger.CreateLogSource("NecrosCurse");
-    public static string SavedLogs = "";
-
-    public static string ModPath => Path.Combine(Path.GetDirectoryName(Application.dataPath), "SalemModLoader", "ModFolders", "NecronomiconsCurse");
+    public static WitchcraftModAttribute? Instance { get; private set; }
 
     public void Start()
     {
-        if (!Directory.Exists(ModPath))
-            Directory.CreateDirectory(ModPath);
-
-        LogMessage("Cursed!", true);
+        Instance = ModSingleton<NecronomiconsCurse>.Instance!;
+        Instance.Message("Cursed!", true);
     }
 
     public ModSettings.CheckboxSetting DisableLogs => new()
@@ -60,7 +58,7 @@ public class NecronomiconsCurse
 
     private static void ReloadChatLog(bool inactive)
     {
-        if (Constants.IsInvalidMode)
+        if (Constants.IsInvalidMode())
             return;
 
         UObject.FindObjectsOfType<PooledChatViewSwitcher>(true).ForEach(x => x.ExpandButtonGO.SetActive(!inactive));
@@ -68,48 +66,9 @@ public class NecronomiconsCurse
 
     private static void ReloadPlayerPopOuts(bool _)
     {
-        if (Constants.IsInvalidMode)
+        if (Constants.IsInvalidMode())
             return;
 
         UObject.FindObjectsOfType<PlayerPopupController>(true).ForEach(x => x.Validate());
-    }
-
-    private static void LogSomething(object message, LogLevel type, bool logIt)
-    {
-        logIt = logIt || Constants.Debug;
-        message = $"[{DateTime.UtcNow}] {message}";
-
-        if (logIt)
-            Log?.Log(type, message);
-
-        SavedLogs += $"[{type, -7}] {message}\n";
-    }
-
-    public static void LogError(object message) => LogSomething(message, LogLevel.Error, true);
-
-    public static void LogMessage(object message, bool logIt = false) => LogSomething(message, LogLevel.Message, logIt);
-
-    public static void LogFatal(object message) => LogSomething(message, LogLevel.Fatal, true);
-
-    public static void LogInfo(object message, bool logIt = false) => LogSomething(message, LogLevel.Info, logIt);
-
-    public static void LogWarning(object message, bool logIt = false) => LogSomething(message, LogLevel.Warning, logIt);
-
-    public static void LogDebug(object message, bool logIt = false) => LogSomething(message, LogLevel.Debug, logIt);
-
-    public static void LogNone(object message, bool logIt = false) => LogSomething(message, LogLevel.None, logIt);
-
-    public static void LogAll(object message, bool logIt = false) => LogSomething(message, LogLevel.All, logIt);
-
-    public static void SaveLogs()
-    {
-        try
-        {
-            File.WriteAllText(Path.Combine(ModPath, "NecrosCurse.txt"), SavedLogs);
-        }
-        catch
-        {
-            LogError("Unable to save logs");
-        }
     }
 }

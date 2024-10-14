@@ -3,9 +3,10 @@
   "DisplayName": "Necronomicon's Curse",
   "Authors": [ "AlchlcSystm" ],
   "Description": "Removes your ability to look back at information such as other last wills or chatlogs after they have already been presented to you, making the game a memory test.",
-  "Version": "1.0.1",
+  "Version": "1.0.2",
   "Discord": "https://discord.gg/cd27aDQDY9",
   "Platforms": [ "Windows", "Mac" ],
+  "RequiredMods": [ "alchlcsystm.witchcraft" ],
   "Settings":
   {
     "CheckboxSettings":
@@ -30,13 +31,6 @@
         "Description": "Toggles whether you are cursed in Classic mode",
         "DefaultValue": false,
         "AvailableInGame": false
-      },
-      {
-        "Name": "Enable Debugging",
-        "SettingID": "cursed.debug",
-        "Description": "Toggles whether the mod's logs will be displayed (keep it off, only turn on if the dev tells you to)",
-        "DefaultValue": false,
-        "AvailableInGame": true
       }
     ]
   }
