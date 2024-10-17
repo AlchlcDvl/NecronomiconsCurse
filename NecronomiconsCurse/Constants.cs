@@ -6,6 +6,8 @@ public static class Constants
 {
     public static bool ChatLog() => ModSettings.GetBool("Disable Chat Logs", "alchlcsystm.cursed");
 
+    public static bool Scroller() => ModSettings.GetBool("Disable Chat Scroller", "alchlcsystm.cursed");
+
     public static bool LastWills() => ModSettings.GetBool("Disable Last Wills", "alchlcsystm.cursed");
 
     public static bool DeathNotes() => ModSettings.GetBool("Disable Death Notes", "alchlcsystm.cursed");

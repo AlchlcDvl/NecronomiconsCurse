@@ -1,3 +1,4 @@
+using Game.Chat;
 using Game.Interface;
 using HarmonyLib;
 
@@ -100,5 +101,18 @@ public static class PlayerPopupControllerInitializeDeathNotePanelPatch
             __instance.DeathNotePanelGO.SetActive(false);
 
         return !Constants.DeathNotes();
+    }
+}
+
+[HarmonyPatch(typeof(PooledChatController), nameof(PooledChatController.Start))]
+public static class PooledChatControllerStartPatch
+{
+    public static void Postfix(PooledChatController __instance)
+    {
+        if (Constants.IsInvalidMode())
+            return;
+
+        if (Constants.Scroller())
+            __instance.chatScrollBar.gameObject.SetActive(false);
     }
 }

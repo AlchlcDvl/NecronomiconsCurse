@@ -3,6 +3,8 @@ using Game.Interface;
 using Witchcraft.Modules;
 using Witchcraft.Utils;
 using UObject = UnityEngine.Object;
+using Game.Chat;
+using static SML.ModSettings;
 
 namespace NecronomiconsCurse;
 
@@ -20,7 +22,7 @@ public class NecronomiconsCurse
         Instance.Message("Cursed!", true);
     }
 
-    public ModSettings.CheckboxSetting DisableLogs => new()
+    public CheckboxSetting DisableLogs => new()
     {
         Name = "Disable Chat Logs",
         Description = "Toggles whether you can open the game's chat logs",
@@ -29,7 +31,7 @@ public class NecronomiconsCurse
         OnChanged = ReloadChatLog
     };
 
-    public ModSettings.CheckboxSetting DisableWills => new()
+    public CheckboxSetting DisableWills => new()
     {
         Name = "Disable Last Wills",
         Description = "Toggles whether you can read others' last wills after it is displayed",
@@ -38,22 +40,30 @@ public class NecronomiconsCurse
         OnChanged = ReloadPlayerPopOuts
     };
 
-    public ModSettings.CheckboxSetting DisableNotes => new()
+    public CheckboxSetting DisableNotes => new()
     {
         Name = "Disable Death Notes",
         Description = "Toggles whether you can read death notes after they have been displayed",
-        DefaultValue = false,
         AvailableInGame = true,
         OnChanged = ReloadPlayerPopOuts
     };
 
-    public ModSettings.CheckboxSetting DisableDeaths => new()
+    public CheckboxSetting DisableDeaths => new()
     {
         Name = "Disable Cause Of Death",
         Description = "Toggles whether you can see a player's cause of death",
-        DefaultValue = false,
         AvailableInGame = true,
         OnChanged = ReloadPlayerPopOuts
+    };
+
+    public CheckboxSetting DisableChatSroller => new()
+    {
+        Name = "Disable Chat Scroller",
+        Description = "Toggles whether you can move up the chat",
+        DefaultValue = false,
+        AvailableInGame = true,
+        OnChanged = ReloadChatScroller,
+        Available = Constants.ChatLog()
     };
 
     private static void ReloadChatLog(bool inactive)
@@ -70,5 +80,13 @@ public class NecronomiconsCurse
             return;
 
         UObject.FindObjectsOfType<PlayerPopupController>(true).ForEach(x => x.Validate());
+    }
+
+    private static void ReloadChatScroller(bool inactive)
+    {
+        if (Constants.IsInvalidMode())
+            return;
+
+        UObject.FindObjectsOfType<PooledChatController>(true).ForEach(x => x.chatScrollBar.gameObject.SetActive(!inactive));
     }
 }
