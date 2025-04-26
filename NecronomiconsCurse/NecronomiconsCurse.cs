@@ -8,18 +8,14 @@ using static SML.ModSettings;
 
 namespace NecronomiconsCurse;
 
-[SalemMod]
-[SalemMenuItem]
-[DynamicSettings]
-[WitchcraftMod(typeof(NecronomiconsCurse), "NecrosCurse")]
-public class NecronomiconsCurse
+[SalemMod, SalemMenuItem, DynamicSettings]
+public class NecronomiconsCurse : BaseMod<NecronomiconsCurse>
 {
-    public static WitchcraftModAttribute? Instance { get; private set; }
+    public override string Name => "NecrosCurse";
 
-    public void Start()
+    public override void Start()
     {
-        Instance = ModSingleton<NecronomiconsCurse>.Instance!;
-        Instance.Message("Cursed!", true);
+        Message("Cursed!", true);
     }
 
     public CheckboxSetting DisableLogs => new()
@@ -56,7 +52,7 @@ public class NecronomiconsCurse
         OnChanged = ReloadPlayerPopOuts
     };
 
-    public CheckboxSetting DisableChatSroller => new()
+    public CheckboxSetting DisableChatSrcoller => new()
     {
         Name = "Disable Chat Scroller",
         Description = "Toggles whether you can move up the chat",
